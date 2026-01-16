@@ -351,15 +351,13 @@ page1.style.display="flex";
 let n=3;
 setInterval(()=>{if(n>1)count.innerText=--n;else{count.innerText="🎉";nextBtn.style.display="block"}},1000);
 
-function goPage2(){page1.style.display="none";page2.style.display="flex"}
+function goPage2(){page1.style.display="none";page2.style.display="flex"
+                  let music = document.getElementById("bgMusic");
+  music.volume = 0.5;   // soft & pleasant
+  music.play();}
 function goCake(){
   page2.style.display="none";
-  cakePage.style.display="flex";
-
-  let music = document.getElementById("bgMusic");
-  music.volume = 0.5;   // soft & pleasant
-  music.play();
-}
+  cakePage.style.display="flex";}
 function decorate(){decor.style.display="block";flame.style.display="block";decBtn.style.display="none";blowBtn.style.display="block"}
 function blow(){
   const flameEl = document.getElementById("flame");
