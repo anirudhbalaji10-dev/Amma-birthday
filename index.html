@@ -234,7 +234,7 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
 </head>
 
 <body>
-
+<audio id="bgMusic" src="amma.mp3" loop></audio>
 <div class="page" id="page1">
 <div class="circle" id="count">3</div>
 <div class="text">Crafting your special moment...</div>
@@ -352,7 +352,14 @@ let n=3;
 setInterval(()=>{if(n>1)count.innerText=--n;else{count.innerText="🎉";nextBtn.style.display="block"}},1000);
 
 function goPage2(){page1.style.display="none";page2.style.display="flex"}
-function goCake(){page2.style.display="none";cakePage.style.display="flex"}
+function goCake(){
+  page2.style.display="none";
+  cakePage.style.display="flex";
+
+  let music = document.getElementById("bgMusic");
+  music.volume = 0.5;   // soft & pleasant
+  music.play();
+}
 function decorate(){decor.style.display="block";flame.style.display="block";decBtn.style.display="none";blowBtn.style.display="block"}
 function blow(){
   const flameEl = document.getElementById("flame");
