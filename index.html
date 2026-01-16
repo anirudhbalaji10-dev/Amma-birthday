@@ -217,6 +217,18 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
   transform-origin:left;
   transition:transform 1.2s ease;
 }
+  .flags{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+.flag{
+  width:0;
+  height:0;
+  border-left:12px solid transparent;
+  border-right:12px solid transparent;
+  border-top:18px solid red;
+}
 
 </style>
 </head>
@@ -251,10 +263,10 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
 <div class="page" id="memoryPage">
 <div class="text">Some Sweet Moments</div>
 <div class="cardBox" id="cardBox">
-<div class="card"><img src="ani1.jpeg" class="memory 1"></div>
-<div class="card"><img src="ani2.jpeg" class="memory 2"></div>
-<div class="card"><img src="ani3.jpeg" class="memory 3"></div>
-<div class="card"><img src="ani4.jpeg" class="memory 4"></div>
+<div class="card"><img src="ani1.jpeg" class="memory m1"></div>
+<div class="card"><img src="ani2.jpeg" class="memory m2"></div>
+<div class="card"><img src="ani3.jpeg" class="memory m3"></div>
+<div class="card"><img src="ani4.jpeg" class="memory m4"></div>
 </div>
 <button style="margin-top:30px" onclick="goGift()">Next ➜</button>
 </div>
@@ -318,7 +330,8 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
       <div class="paperScroll">
        <h4>Happy Birthday Amma</h4> , <br> 
        I made this page for you and I wanted wish by it Today <br>
-        May this year can bring you a Super , happy living life and I will fullfill your dreams and become a sucessfull person <br> Infront of all who make you feeled insulted <br>
+        May this year can bring you a Super , happy living life and I will fulfill your dreams and become a successful person<br>
+in front of everyone who ever made you feel insulted.<br>
         <h5>By your Proudfull Son! - Anirudh Nag </h5>
       </div>
     </div>
@@ -361,12 +374,9 @@ function goGift(){
 
 function openGift(){
   alert("✨ Amma, your surprise is opening… 💖");
-}
-function openGift(){
   giftPage.style.display="none";
   messageCover.style.display="flex";
 }
-
 function openBook(){
   messageCover.style.display="none";
   bookPage.style.display="flex";
