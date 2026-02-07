@@ -94,6 +94,26 @@ box-shadow:0 0 30px #ff6fd8}
   opacity: 0.85;
   animation: floatCelebrate 3.5s ease-in-out infinite;
 }
+.celebrateIcons {
+  margin-top: 14px;
+  font-size: 20px;
+  opacity: 0;
+  animation: iconsPop 1.2s ease forwards;
+  animation-delay: 0.6s;
+  letter-spacing: 6px;
+}
+
+@keyframes iconsPop {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 @keyframes floatCelebrate {
   0%,100% { transform: translateY(0); }
@@ -488,11 +508,34 @@ body {
   0%,100% { box-shadow: 0 0 12px rgba(255,79,216,0.5); }
   50% { box-shadow: 0 0 26px rgba(255,79,216,0.9); }
 }
+/* Celebration entry effect */
+.cakePageEnter {
+  animation: celebrateIn 1.4s ease forwards;
+}
 
+@keyframes celebrateIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+#cakePage .text {
+  font-size: 26px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 14px var(--mainGlow);
+}
 </style>
 </head>
 
 <body>
+<audio id="drumRoll" src="drum-roll.mp3"></audio>
 <audio id="bgMusic" src="amma.mp3" loop></audio>
 <div id="particles"></div>
 <div class="page" id="page1">
@@ -651,21 +694,36 @@ function goPage2(){page1.style.display="none";page2.style.display="flex"
   music.play();}
 function goCake(){
   page2.style.display="none";
-  cakePage.style.display="flex";}
+  cakePage.style.display="flex";
+  cakePage.classList.add("cakePageEnter");
+}
 function decorate(){decor.style.display="block";flame.style.display="block";decBtn.style.display="none";blowBtn.style.display="block"}
 function blow(){
   const flameEl = document.getElementById("flame");
-  flameEl.style.animation="none";
-  flameEl.style.transform="scale(0)";
-  flameEl.style.transition="0.4s";
+  const drum = document.getElementById("drumRoll");
 
-  blowBtn.innerText="✨ Candle Blown!";
-  
-  setTimeout(()=>{
-    cakePage.style.display="none";
-    memoryPage.style.display="flex";
-  },1000);
+  // play drum roll
+  drum.volume = 0.6;
+  drum.currentTime = 0;
+  drum.play();
+
+  // candle blow animation
+  flameEl.style.animation = "none";
+  flameEl.style.transform = "scale(0)";
+  flameEl.style.transition = "0.4s";
+
+  blowBtn.innerText = "✨ Candle Blown!";
+
+  // stop drum softly and move to next page
+  setTimeout(() => {
+    drum.pause();
+    drum.currentTime = 0;
+
+    cakePage.style.display = "none";
+    memoryPage.style.display = "flex";
+  }, 1400);
 }
+
 function removeCard(card){
   card.style.transform = "translateX(-400px) rotate(-25deg) scale(0.9)";
   card.style.opacity = "0";
