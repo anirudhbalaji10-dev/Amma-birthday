@@ -99,6 +99,14 @@ box-shadow:0 0 30px #ff6fd8}
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
+.cake {
+  animation: cakePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes cakePulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
 
 #cakePage button {
   margin-top: 28px;
@@ -123,6 +131,26 @@ border-radius:0 0 35px 35px;position:relative;box-shadow:0 20px 25px rgba(0,0,0,
 border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
 
 /* Balloons */
+.celebrateIcons {
+  margin: 12px 0 18px;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.celebrateIcons span {
+  display: inline-block;
+  margin: 0 6px;
+  animation: floatUp 3s ease-in-out infinite;
+}
+
+.celebrateIcons span:nth-child(odd) {
+  animation-delay: 1.2s;
+}
+
+@keyframes floatUp {
+  0%,100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(-8px); opacity: 1; }
+}
 .balloonWrap{position:relative;width:300px;height:350px}
 .balloon{width:70px;height:90px;border-radius:50%;position:absolute;cursor:pointer}
 .b1{background:#ff7ab8;left:10px}.b2{background:#ffcf4a;left:85px}
@@ -452,6 +480,14 @@ body {
 #messageCover button {
   margin-top: 22px;
 }
+#decBtn {
+  animation: glowCall 2.5s ease-in-out infinite;
+}
+
+@keyframes glowCall {
+  0%,100% { box-shadow: 0 0 12px rgba(255,79,216,0.5); }
+  50% { box-shadow: 0 0 26px rgba(255,79,216,0.9); }
+}
 
 </style>
 </head>
@@ -481,7 +517,11 @@ body {
 <div class="candle"><div id="flame" class="flame"></div></div></div>
 </div>
 <div class="celebrateIcons">
-  🎉 🎈 ✨ 🎊 💖
+  <span>🎉</span>
+  <span>🎈</span>
+  <span>✨</span>
+  <span>🎊</span>
+  <span>💖</span>
 </div>
 <button id="decBtn" onclick="decorate()">✨ Decorate Room</button>
 <button id="blowBtn" onclick="blow()" style="display:none">💨 Blow Candle</button>
