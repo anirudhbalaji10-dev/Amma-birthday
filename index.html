@@ -60,6 +60,22 @@ box-shadow:0 0 30px #ff6fd8}
 @keyframes bounce{50%{transform:translateY(-12px)}}
 
 /* Cake */
+#cakePage .cakeArea {
+  position: relative;
+}
+
+#cakePage .cakeArea::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255,120,180,0.35),
+    rgba(255,120,180,0.15),
+    transparent 70%);
+  filter: blur(8px);
+  z-index: -1;
+}
 .cakeArea{position:relative;margin-top:30px}
 .decorate span{
   position:absolute;
@@ -71,6 +87,33 @@ box-shadow:0 0 30px #ff6fd8}
 @keyframes float{to{transform:translateY(-15px)}}
 .d1{top:-30px;left:-50px}.d2{top:-30px;right:-50px}
 .d3{bottom:-40px;left:-40px}.d4{bottom:-40px;right:-40px}
+.celebrateIcons {
+  display: flex;
+  gap: 14px;
+  font-size: 22px;
+  opacity: 0.85;
+  animation: floatCelebrate 3.5s ease-in-out infinite;
+}
+
+@keyframes floatCelebrate {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+#cakePage button {
+  margin-top: 28px;
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.4),
+    0 0 18px rgba(255,120,180,0.8);
+}
+.candle {
+  animation: candlePulse 2s infinite;
+}
+
+@keyframes candlePulse {
+  0%,100% { box-shadow: 0 0 10px orange; }
+  50% { box-shadow: 0 0 20px gold; }
+}
 
 .cake{width:240px;height:150px;background:linear-gradient(#ffb6c1,#ff7fa3);
 border-radius:0 0 35px 35px;position:relative;box-shadow:0 20px 25px rgba(0,0,0,.4)}
@@ -436,6 +479,9 @@ body {
 </div>
 <div class="cake"><div class="cream"></div>
 <div class="candle"><div id="flame" class="flame"></div></div></div>
+</div>
+<div class="celebrateIcons">
+  🎉 🎈 ✨ 🎊 💖
 </div>
 <button id="decBtn" onclick="decorate()">✨ Decorate Room</button>
 <button id="blowBtn" onclick="blow()" style="display:none">💨 Blow Candle</button>
