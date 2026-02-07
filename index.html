@@ -357,6 +357,31 @@ body {
   --mainGlow: #d4af37;
   --accent: #f7d774;
 }
+.pauseLine {
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff7be8, transparent);
+  margin: 18px 0 10px;
+  box-shadow: 0 0 10px #ff4fd8;
+}
+
+.pauseText {
+  font-size: 16px;
+  opacity: 0.8;
+  letter-spacing: 0.6px;
+  margin-bottom: 16px;
+}
+.pauseLine {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+#messageCover button {
+  margin-top: 22px;
+}
 
 </style>
 </head>
@@ -436,6 +461,8 @@ body {
   </div>
 
   <div class="text">A Special Message</div>
+  <div class="pauseLine"></div>
+<div class="pauseText">Something written from the heart…</div>
 
   <button onclick="openBook()">Next ➜</button>
 </div>
