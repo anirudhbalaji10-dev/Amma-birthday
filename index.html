@@ -3,44 +3,18 @@
 <head>
 <title>Happy Birthday Amma</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
 body{
 margin:0;height:100vh;
-background:
-    radial-gradient(circle at top, rgba(255,120,200,0.18), transparent 60%),
-    radial-gradient(circle at bottom, rgba(0,0,0,0.8), #000 70%),
-    linear-gradient(180deg, #120014, #050008);
+background:radial-gradient(circle at top,#3b003b,#000010);
 display:flex;justify-content:center;align-items:center;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;color:white;overflow:hidden}
+font-family:'Pacifico',cursive;color:white;overflow:hidden}
 .page{display:none;position:absolute;inset:0;flex-direction:column;justify-content:center;align-items:center}
-.page {
-  z-index: 2;
-}
-.accentText {
-  font-family: 'Pacifico', cursive;
-  letter-spacing: 0.5px;
-}
-.cardBox,
-.bookWrap,
-.cakeArea {
-  position: relative;
-  z-index: 3;
-}
 .text{
   color: var(--accent);
   text-shadow: 0 0 12px var(--mainGlow);
-}
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.05;
-  pointer-events: none;
-  z-index: 0;
 }
 button{background:linear-gradient(45deg,#ff4fd8,#ff7be8);border:none;color:white;
 padding:14px 34px;border-radius:30px;font-size:18px;box-shadow:0 0 12px #ff4fd8}
@@ -80,24 +54,6 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
 
 /* Memory Cards */
 .cardBox{width:260px;height:320px;position:relative}
-.cardBox {
-  backdrop-filter: blur(6px);
-  padding: 20px;
-  border-radius: 30px;
-}
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  background: radial-gradient(circle at top left, rgba(255,255,255,0.35), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.card:hover::before {
-  opacity: 1;
-}
 .cardBox::after {
   content: "";
   position: absolute;
@@ -124,9 +80,7 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
 
 .card:hover {
   transform: scale(1.05) rotate(-1deg);
-  box-shadow:
-  0 10px 30px rgba(0,0,0,0.4),
-  0 0 18px var(--mainGlow);
+  box-shadow: 0 0 40px var(--mainGlow);
 }
 
 .card img {
@@ -173,10 +127,6 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
 }
 
 .paperScroll{
-  font-family: 'Inter', serif;
-  font-weight: 400;
-  line-height: 1.7;
-  letter-spacing: 0.2px;
   height:100%;
   overflow-y:auto;
   padding:14px;
@@ -303,6 +253,9 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
   border-right:12px solid transparent;
   border-top:18px solid red;
 }
+.page {
+  animation: fadeIn 0.8s ease;
+}
 
 @keyframes fadeIn {
   from {
@@ -315,10 +268,13 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
   }
 }
 .particle {
-  width: 4px;
-  height: 4px;
-  opacity: 0.3;
-  filter: blur(1px);
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff, #ff7be8);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: floatUp 6s linear infinite;
 }
 
 @keyframes floatUp {
@@ -384,19 +340,6 @@ body {
   --mainGlow: #d4af37;
   --accent: #f7d774;
 }
-@keyframes tapHint {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-}
-
-.card {
-  animation: tapHint 3s infinite;
-}
-button {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  letter-spacing: 0.3px;
-}
 
 </style>
 </head>
@@ -406,13 +349,13 @@ button {
 <div id="particles"></div>
 <div class="page" id="page1">
 <div class="circle" id="count">3</div>
-<div class="text accentText">Crafting your special moment...</div>
+<div class="text">Crafting your special moment...</div>
 <button id="nextBtn" onclick="goPage2()" style="display:none">Next ➜</button>
 </div>
 
 <div class="page" id="page2">
 <img src="ani.gif" class="doll">
-<div class="text accentText">My Amma was born today 💖</div>
+<div class="text">My Amma was born today 💖</div>
 <button onclick="goCake()">🎁 Start the Surprise</button>
 </div>
 
@@ -456,7 +399,7 @@ button {
     <div class="flag" style="border-top-color:#ff5fa2"></div>
   </div>
 
-  <div class="text accentText">One Last Thing...</div>
+  <div class="text">One Last Thing...</div>
 
   <img src="anir.jpeg"
        style="width:180px;margin-top:40px;cursor:pointer;animation:giftBounce 1.5s infinite"
@@ -475,7 +418,7 @@ button {
     <div class="flag" style="border-top-color:#ff5fa2"></div>
   </div>
 
-  <div class="text accentText">A Special Message</div>
+  <div class="text">A Special Message</div>
 
   <button onclick="openBook()">Next ➜</button>
 </div>
@@ -543,8 +486,6 @@ const timer = setInterval(() => {
 }, 1000);
 function switchToGoldTheme() {
   document.body.classList.add("goldTheme");
-  document.body.style.background =
-    "radial-gradient(circle at top, #3a2a00, #0b0700)";
 }
 
 function goPage2(){page1.style.display="none";page2.style.display="flex"
@@ -569,10 +510,12 @@ function blow(){
   },1000);
 }
 function removeCard(card){
-  document.querySelectorAll(".card").forEach(c => c.style.animation="none");
   card.style.transform = "translateX(-400px) rotate(-25deg) scale(0.9)";
   card.style.opacity = "0";
-  setTimeout(()=> card.remove(), 500);
+
+  setTimeout(()=>{
+    card.remove();
+  },500);
 }
 
 function goGift(){
@@ -599,7 +542,7 @@ function openDiary(){
 }
 const particleBox = document.getElementById("particles");
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 25; i++) {
   const p = document.createElement("div");
   p.className = "particle";
   p.style.left = Math.random() * 100 + "vw";
