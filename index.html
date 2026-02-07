@@ -12,7 +12,10 @@ background:radial-gradient(circle at top,#3b003b,#000010);
 display:flex;justify-content:center;align-items:center;
 font-family:'Pacifico',cursive;color:white;overflow:hidden}
 .page{display:none;position:absolute;inset:0;flex-direction:column;justify-content:center;align-items:center}
-.text{font-size:24px;margin:20px;color:#ffb6e6;text-shadow:0 0 10px #ff4fd8}
+.text{
+  color: var(--accent);
+  text-shadow: 0 0 12px var(--mainGlow);
+}
 button{background:linear-gradient(45deg,#ff4fd8,#ff7be8);border:none;color:white;
 padding:14px 34px;border-radius:30px;font-size:18px;box-shadow:0 0 12px #ff4fd8}
 .circle{width:140px;height:140px;border-radius:50%;
@@ -51,6 +54,32 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
 
 /* Memory Cards */
 .cardBox{width:260px;height:320px;position:relative}
+.cardBox {
+  backdrop-filter: blur(6px);
+  padding: 20px;
+  border-radius: 30px;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.35), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+.cardBox::after {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  border-radius: 30px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent);
+  pointer-events: none;
+}
 .card{
   width:260px;height:320px;border-radius:20px;
   position:absolute;
@@ -62,6 +91,19 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
 .card:nth-child(2){transform:translate(10px,10px)}
 .card:nth-child(3){transform:translate(20px,20px)}
 .card img{width:100%;height:100%;border-radius:20px}
+.card {
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 0 0 40px var(--mainGlow);
+}
+
+.card img {
+  filter: saturate(1.1) contrast(1.05);
+}
 @keyframes giftBounce{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-12px)}
@@ -229,9 +271,6 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
   border-right:12px solid transparent;
   border-top:18px solid red;
 }
-.page {
-  animation: fadeIn 0.8s ease;
-}
 
 @keyframes fadeIn {
   from {
@@ -269,6 +308,62 @@ button:active {
   transform: scale(0.94);
   box-shadow: 0 0 6px #ff4fd8;
 }
+button{
+  box-shadow: 0 0 14px var(--mainGlow);
+}
+
+/* Cinematic intro */
+body {
+  animation: cinematicFade 1.8s ease forwards;
+}
+
+@keyframes cinematicFade {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.page {
+  animation: pageReveal 0.9s ease;
+}
+
+@keyframes pageReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+:root {
+  --mainGlow: #ff4fd8;
+  --accent: #ff7be8;
+}
+
+body {
+  transition: background 1.2s ease;
+}
+
+.goldTheme {
+  --mainGlow: #d4af37;
+  --accent: #f7d774;
+}
+@keyframes tapHint {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+.card {
+  animation: tapHint 3s infinite;
+}
+
 </style>
 </head>
 
@@ -412,6 +507,12 @@ const timer = setInterval(() => {
     clearInterval(timer);
   }
 }, 1000);
+function switchToGoldTheme() {
+  document.body.classList.add("goldTheme");
+  document.body.style.background =
+    "radial-gradient(circle at top, #3a2a00, #0b0700)";
+}
+
 function goPage2(){page1.style.display="none";page2.style.display="flex"
                   let music = document.getElementById("bgMusic");
   music.volume = 0.5;   // soft & pleasant
@@ -434,13 +535,12 @@ function blow(){
   },1000);
 }
 function removeCard(card){
-  card.style.transform = "translateX(-350px) rotate(-20deg)";
+  document.querySelectorAll(".card").forEach(c => c.style.animation="none");
+  card.style.transform = "translateX(-400px) rotate(-25deg) scale(0.9)";
   card.style.opacity = "0";
-
-  setTimeout(()=>{
-    card.remove();
-  },400);
+  setTimeout(()=> card.remove(), 500);
 }
+
 function goGift(){
   memoryPage.style.display="none";
   giftPage.style.display="flex";
@@ -450,6 +550,7 @@ function openGift(){
   alert("✨ Amma, your surprise is opening… 💖");
   giftPage.style.display="none";
   messageCover.style.display="flex";
+  switchToGoldTheme();
 }
 function openBook(){
   messageCover.style.display="none";
