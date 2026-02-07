@@ -229,12 +229,52 @@ border-radius:50%;margin:-18px auto;box-shadow:0 0 10px orange,0 0 25px gold}
   border-right:12px solid transparent;
   border-top:18px solid red;
 }
+.page {
+  animation: fadeIn 0.8s ease;
+}
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff, #ff7be8);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(100vh);
+  }
+  to {
+    transform: translateY(-20vh);
+  }
+}
+button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.94);
+  box-shadow: 0 0 6px #ff4fd8;
+}
 </style>
 </head>
 
 <body>
 <audio id="bgMusic" src="amma.mp3" loop></audio>
+<div id="particles"></div>
 <div class="page" id="page1">
 <div class="circle" id="count">3</div>
 <div class="text">Crafting your special moment...</div>
@@ -421,6 +461,16 @@ function openDiary(){
   if(diaryOpened) return;
   document.getElementById("book").classList.add("bookOpen");
   diaryOpened = true;
+}
+const particleBox = document.getElementById("particles");
+
+for (let i = 0; i < 25; i++) {
+  const p = document.createElement("div");
+  p.className = "particle";
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.animationDelay = Math.random() * 6 + "s";
+  p.style.opacity = Math.random();
+  particleBox.appendChild(p);
 }
 </script>
 
